@@ -1,0 +1,205 @@
+{
+  "mcq": [
+    {
+      "id": 1,
+      "topic": "AWS VPC",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "What happens to the IP address of an EC2 instance when it is terminated?",
+      "options": {
+        "A": "The IP address becomes available for re-use",
+        "B": "The IP address is reserved by AWS",
+        "C": "The IP address remains associated with the terminated instance's DNS name",
+        "D": "The IP address is released back to the VPC CIDR block"
+      },
+      "correct_answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": 2,
+      "topic": "AWS VPC",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "What happens when you delete a VPC peering connection?",
+      "options": {
+        "A": "The peer VPCs are disconnected",
+        "B": "The peer VPCs continue to route traffic, but with an error message",
+        "C": "The peer VPCs are automatically re-peered with the original configuration",
+        "D": "No changes occur to the peer VPCs"
+      },
+      "correct_answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": 3,
+      "topic": "AWS VPC",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "What is true about AWS VPC Flow Logs?",
+      "options": {
+        "A": "Flow logs are a type of log that records network traffic within a VPC",
+        "B": "Flow logs only record incoming traffic to the VPC",
+        "C": "Flow logs require a separate IAM role and permissions to enable",
+        "D": "Flow logs can be used to track security group changes"
+      },
+      "correct_answer": "A",
+      "explanation": ""
+    },
+    {
+      "id": 1,
+      "topic": "AWS VPC",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "What is an important concept in AWS VPC? (Question 1)",
+      "options": {
+        "A": "Option A",
+        "B": "Option B",
+        "C": "Option C",
+        "D": "Option D"
+      },
+      "correct_answer": "A",
+      "explanation": "This is a fallback question. Please regenerate for better quality."
+    },
+    {
+      "id": 2,
+      "topic": "AWS VPC",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "What is an important concept in AWS VPC? (Question 2)",
+      "options": {
+        "A": "Option A",
+        "B": "Option B",
+        "C": "Option C",
+        "D": "Option D"
+      },
+      "correct_answer": "A",
+      "explanation": "This is a fallback question. Please regenerate for better quality."
+    },
+    {
+      "id": 3,
+      "topic": "AWS VPC",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "What is an important concept in AWS VPC? (Question 3)",
+      "options": {
+        "A": "Option A",
+        "B": "Option B",
+        "C": "Option C",
+        "D": "Option D"
+      },
+      "correct_answer": "A",
+      "explanation": "This is a fallback question. Please regenerate for better quality."
+    }
+  ],
+  "fillup": [
+    {
+      "id": 1,
+      "topic": "Data Transmission",
+      "difficulty": "Medium",
+      "type": "fillup",
+      "question": "In TCP/IP, data packets are reassembled into the original ___ format",
+      "correct_word": "stream",
+      "hint": "Network protocol layer",
+      "explanation": ""
+    },
+    {
+      "id": 2,
+      "topic": "Data Transmission",
+      "difficulty": "Medium",
+      "type": "fillup",
+      "question": "The process of converting parallel data bits to serial data is called ___ transmission",
+      "correct_word": "serial",
+      "hint": "Digital communication technique",
+      "explanation": ""
+    },
+    {
+      "id": 3,
+      "topic": "Data Transmission",
+      "difficulty": "Medium",
+      "type": "fillup",
+      "question": "A type of error detection method that uses mathematical calculations to verify the integrity of transmitted data is known as ___ coding",
+      "correct_word": "Cyclic Redundancy Check (CRC)",
+      "hint": "Digital signal processing technique",
+      "explanation": ""
+    },
+    {
+      "id": 1,
+      "topic": "Data Transmission",
+      "difficulty": "Medium",
+      "type": "fillup",
+      "question": "In Ethernet, a ___ is used to identify a unique device on a network",
+      "correct_word": "MAC address",
+      "hint": "Used for network identification",
+      "explanation": ""
+    },
+    {
+      "id": 2,
+      "topic": "Data Transmission",
+      "difficulty": "Medium",
+      "type": "fillup",
+      "question": "The ___ protocol is responsible for error-free transfer of data packets over the internet",
+      "correct_word": "TCP",
+      "hint": "Connection-oriented protocol",
+      "explanation": ""
+    },
+    {
+      "id": 3,
+      "topic": "Data Transmission",
+      "difficulty": "Medium",
+      "type": "fillup",
+      "question": "In Wi-Fi, a ___ is used to manage access to a wireless network",
+      "correct_word": "AP",
+      "hint": "Access Point",
+      "explanation": ""
+    }
+  ],
+  "coding": [
+    {
+      "id": 1,
+      "topic": "Spring Boot Services",
+      "difficulty": "hard",
+      "type": "coding",
+      "question": "Implement a 'MostRecentOrder' service in a Spring Boot application that returns the most recent order for a given customer. The order history is stored in a database with a separate table for orders and another for customers.",
+      "input": "Customer ID (integer), List of orders (JSON array containing {orderID, date})",
+      "output": "Most recent order details (JSON object with {orderID, date, totalAmount}) or null if no orders found",
+      "constraints": "Orders are sorted in descending order by date. If multiple orders have the same date, return the one with the highest order ID.",
+      "expected_output_example": "{orderID: 123, date: '2022-01-10', totalAmount: 100.99}",
+      "time_limit_seconds": 120
+    },
+    {
+      "id": 2,
+      "topic": "Spring Boot Services",
+      "difficulty": "hard",
+      "type": "coding",
+      "question": "Create a 'BatchProcessor' service in a Spring Boot application that processes batches of orders and returns the total revenue for each region (North, South, East, West). Orders are stored in a database with a 'region' column. Batches are grouped by region.",
+      "input": "List of orders (JSON array containing {orderID, region, totalAmount})",
+      "output": "Total revenue for each region (JSON object with {North: X, South: Y, East: Z, West: W}) or an empty object if no orders found",
+      "constraints": "Orders in the same batch have the same date. Process batches by region and calculate total revenue for each region separately.",
+      "expected_output_example": "{\"North\": 1000.00, \"South\": 800.99, \"East\": 500.01, \"West\": 300.98}",
+      "time_limit_seconds": 120
+    },
+    {
+      "id": 1,
+      "topic": "Spring Boot Services",
+      "difficulty": "hard",
+      "type": "coding",
+      "question": "Given a list of users, write a Spring Boot service that returns the top N most active users based on the number of requests they've made. Consider handling pagination and sorting by request count.",
+      "input": "List of User objects (name, email, requestCount) and integer N",
+      "output": "List of User objects sorted by requestCount in descending order, paginated to return at most N users",
+      "constraints": "Users can make multiple requests within a short time frame. Handle this scenario by considering only distinct IPs.",
+      "expected_output_example": "Expected output: [User1 (5 requests), User2 (3 requests)] for input list and N=2",
+      "time_limit_seconds": 120
+    },
+    {
+      "id": 2,
+      "topic": "Spring Boot Services",
+      "difficulty": "hard",
+      "type": "coding",
+      "question": "Implement a Spring Boot service that generates a report of the top K products with the highest average rating. Consider handling cases where ratings are available for some products but not others, and return an empty list if K is greater than the total number of products.",
+      "input": "Map of product IDs to ratings (some ratings might be missing) and integer K",
+      "output": "List of product IDs sorted by average rating in descending order, truncated to at most K products",
+      "constraints": "Product ratings can change over time. Always use the latest available rating for each product.",
+      "expected_output_example": "Expected output: [ProductA (4.5), ProductB (4.2)] for input map and K=2",
+      "time_limit_seconds": 120}
+  ]
+}
