@@ -25,7 +25,7 @@ class QuestionGenerator:
     def __init__(self, ollama_url: str = "http://localhost:11434"):
         """Initialize the question generator"""
         self.ollama_url = ollama_url
-        self.model = "mistral:7b-instruct"
+        self.model = "gemma3:4b"
         self.temperature = 0.3  # FIXED: Lowered from 0.7 for consistent JSON output
         self.test_connection()
 
@@ -120,41 +120,23 @@ Generate exactly {count} questions.
     def generate_fillup(self, topic: str, difficulty: str = "easy", count: int = 3) -> tuple:
         """Generate fill-in-the-blank questions - FIXED"""
 
-        prompt = f"""You are an expert academic question designer.
+        prompt =f"""You are an expert academic question designer.
 
 TASK:
 Generate exactly {count} FILL-IN-THE-BLANK questions on the topic "{topic}" with difficulty "{difficulty}".
 
-CRITICAL OUTPUT RULES (NON-NEGOTIABLE):
-1. Output MUST be a valid JSON ARRAY only.
-2. No markdown, no comments, no extra explanations outside JSON.
-3. JSON must be directly parsable using json.loads().
-4. Follow the schema EXACTLY as shown below.
-5. Difficulty matching is mandatory.
+CRITICAL "ANTI-REPETITION" RULES:
+1. EACH question must test a COMPLETELY DIFFERENT concept.
+2. The "correct_word" MUST be different for every question.
+3. If Question 1 answer is "Voltage", Question 2 CANNOT be "Voltage".
+4. Do NOT use the same sentence structure repeatedly.
 
-DIFFICULTY CALIBRATION (VERY STRICT):
-- EASY:
-  - Direct recall
-  - Obvious missing term
-  - Single correct word
+DIFFICULTY CALIBRATION:
+- EASY: Direct definition. (e.g., "The basic unit of life is the ___.")
+- MEDIUM: Application of a concept.
+- HARD: Edge cases, specific conditions, or relationships between concepts.
 
-- MEDIUM:
-  - Requires understanding of concept or usage
-  - The blank should not be guessable without knowing the topic
-  - Still one clear correct answer
-
-- HARD:
-  - Requires reasoning or understanding of behavior, rules, or edge cases
-  - Blank should NOT be obvious from the sentence alone
-  - Avoid simple memorization
-
-QUALITY RULES:
-- Use exactly ONE blank represented by three underscores ___
-- Correct word must be precise (no multiple valid answers)
-- Sentence must be technically accurate
-- Avoid trivial or overly generic blanks
-
-JSON SCHEMA (COPY EXACTLY):
+JSON SCHEMA (Strictly follow this):
 [
   {{
     "id": 1,
@@ -163,14 +145,27 @@ JSON SCHEMA (COPY EXACTLY):
     "type": "fillup",
     "question": "Sentence with ___ as the blank",
     "correct_word": "ExactCorrectAnswer",
-    "hint": "Short helpful hint without giving away the answer",
-    "explanation": "Brief technical explanation of why this word fits"
+    "hint": "Short hint",
+    "explanation": "Why this word fits"
   }}
 ]
 
-FINAL REMINDER:
-Return ONLY the JSON array.
-Generate exactly {count} questions.
+EXAMPLE (For structure only):
+[
+  {{
+    "id": 1,
+    "question": "In Python, the ___ keyword is used to define a function.",
+    "correct_word": "def"
+  }},
+  {{
+    "id": 2,
+    "question": "An unchangeable list in Python is called a ___.",
+    "correct_word": "tuple"
+  }}
+]
+
+FINAL INSTRUCTION:
+Generate exactly {count} unique questions. Return ONLY the JSON array.
 """
 
         print(f"\n🔄 Generating {count} Fill-up questions...")

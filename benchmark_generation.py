@@ -180,8 +180,8 @@ class QuestionBenchmark:
         print("\n" + "🏃 STARTING COMPLETE BENCHMARK SUITE 🏃".center(70, "="))
 
         results = {
-            "mcq": self.benchmark_mcq(iterations=mcq_iter, count=3),
-            "fillup": self.benchmark_fillup(iterations=fillup_iter, count=3),
+            "mcq": self.benchmark_mcq(iterations=mcq_iter, count=1),
+            "fillup": self.benchmark_fillup(iterations=fillup_iter, count=1),
             "coding": self.benchmark_coding(iterations=coding_iter, count=2)
         }
 
@@ -295,8 +295,8 @@ if __name__ == "__main__":
 
     # Option 1: Benchmark each type separately
     print("\n🔍 INDIVIDUAL BENCHMARKS\n")
-    benchmark.benchmark_mcq(iterations=2, count=3)
-    benchmark.benchmark_fillup(iterations=2, count=3)
+    benchmark.benchmark_mcq(iterations=2, count=1)
+    benchmark.benchmark_fillup(iterations=2, count=1)
     # benchmark.benchmark_coding(iterations=2, count=2)
 
     # Option 2: Save all results
