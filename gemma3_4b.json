@@ -1,0 +1,57 @@
+{
+  "mcq": [
+    {
+      "id": 1,
+      "topic": "AWS VPC",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "An application utilizing AWS VPC endpoints accesses a private database hosted within another VPC. Due to a misconfigured Route Table, traffic destined for the database VPC is unexpectedly routed through the internet gateway, bypassing all VPC endpoints. Which of the following is the MOST significant security implication of this scenario?",
+      "options": {
+        "A": "The application\u2019s increased network latency will negatively impact performance, requiring optimization of the database connection string.",
+        "B": "The application is now vulnerable to man-in-the-middle attacks targeting the database due to the unencrypted internet traffic, exposing sensitive data during transit.",
+        "C": "The VPC endpoints remain functional but are no longer utilized, leading to increased operational overhead for the network team as they must manually manage the internet gateway route.",
+        "D": "The application's security posture is compromised because it is no longer utilizing the benefits of PrivateLink, resulting in a potential breach if the database VPC is accessed through other means."
+      },
+      "correct_answer": "D",
+      "explanation": "While options A, B, and C describe potential issues, option D represents the fundamental security risk. Disabling PrivateLink compromises the entire purpose of using a VPC endpoint \u2013 to establish a private, secured connection without traversing the public internet, thus removing a critical layer of defense."
+    },
+    {
+      "id": 1,
+      "topic": "AWS VPC",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "An organization utilizes AWS VPCs to host its application tiers. They implement Network Address Translation (NAT) Gateways within multiple subnets to enable outbound internet access for their application servers. Due to a recent security audit, the architecture team determines that the current implementation violates several security best practices. Which of the following represents the MOST significant risk introduced by this configuration?",
+      "options": {
+        "A": "The use of NAT Gateways inherently increases outbound latency, negatively impacting application performance and potentially masking underlying network congestion issues.",
+        "B": "The deployment of NAT Gateways across multiple subnets creates a single point of failure and exposes the entire application to potential disruption if the gateway becomes unavailable.",
+        "C": "The uncontrolled outbound access facilitated by NAT Gateways bypasses granular security rules enforced at the subnet level, potentially allowing unauthorized traffic to traverse the network and compromise the application's security posture.",
+        "D": "The reliance on NAT Gateways for outbound connectivity makes the application susceptible to stateful firewall rule misconfigurations, leading to intermittent connectivity issues and difficulty in troubleshooting network problems."
+      },
+      "correct_answer": "C",
+      "explanation": "While options A, B, and D represent potential issues, option C is the core security risk. NAT Gateways, when used without proper subnet-level security groups and routing tables, effectively eliminate the intended security controls, creating a broad open gateway for outbound traffic. This directly contradicts the purpose of VPCs and increases the attack surface."
+    }
+  ],
+  "fillup": [
+    {
+      "id": 1,
+      "topic": "Data Transmission",
+      "difficulty": "hard",
+      "type": "fillup",
+      "question": "Due to significant signal attenuation, a receiver utilizing a high-gain amplifier may exhibit considerable _______, necessitating careful gain control to avoid clipping.",
+      "correct_word": "noise",
+      "hint": "Unwanted electrical signals corrupting the intended data.",
+      "explanation": "Noise introduces random variations in the received signal, potentially exceeding the maximum representable value (clipping), leading to data distortion. This is a key consideration in signal processing and receiver design."
+    },
+    {
+      "id": 1,
+      "topic": "Data Transmission",
+      "difficulty": "hard",
+      "type": "fillup",
+      "question": "Due to significant chromatic dispersion, signals traveling through optical fiber at high rates can experience a phenomenon known as ____, leading to spectral broadening.",
+      "correct_word": "pulse broadening",
+      "hint": "Consider the behavior of light waves through different mediums.",
+      "explanation": "Pulse broadening describes the widening of the spectral bandwidth of a light pulse as it propagates through a dispersive medium like optical fiber, a crucial factor impacting high-speed data transmission."
+    }
+  ],
+  "coding": []
+}
