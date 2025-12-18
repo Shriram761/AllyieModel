@@ -1,0 +1,57 @@
+{
+  "mcq": [
+    {
+      "id": 1,
+      "topic": "AWS VPC",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "When configuring an AWS VPC, what condition must be met for a subnet to correctly associate with an Availability Zone (AZ)?\nA) The subnet's public IP address should match the AZ name.\nB) The subnet\u2019s CIDR block must not overlap with any other subnets in the same AZ.\nC) Subnets associated with the VPC must have at least one EC2 instance running to prove connectivity to the AZ.\nD) The subnet must be located within a region that has multiple AZs.",
+      "options": {
+        "A": "The subnet's public IP address should match the AZ name.",
+        "B": "The subnet\u2019s CIDR block must not overlap with any other subnets in the same AZ.",
+        "C": "Subnets associated with the VPC must have at least one EC2 instance running to prove connectivity to the AZ.",
+        "D": "The subnet must be located within a region that has multiple AZs."
+      },
+      "correct_answer": "B",
+      "explanation": "To ensure proper association of subnets with Availability Zones, their CIDR blocks should not overlap. Each subnet requires its own unique CIDR block to avoid conflicts and maintain network isolation."
+    },
+    {
+      "id": 1,
+      "topic": "AWS VPC",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "When configuring a VPC in AWS, which of the following is true regarding Route Tables and Subnets?\nA) Each subnet must be associated with a default route table.\nB) A Route Table can only contain routes for EC2 instances within the same subnet.\nC) You cannot delete a Route Table if it's associated with any subnets, even if no longer needed.\nD) Routes in a Route Table are automatically propagated to all other Route Tables within the VPC.",
+      "options": {
+        "A": "Each subnet must be associated with a default route table.",
+        "B": "A Route Table can only contain routes for EC2 instances within the same subnet.",
+        "C": "You cannot delete a Route Table if it's associated with any subnets, even if no longer needed.",
+        "D": "Routes in a Route Table are automatically propagated to all other Route Tables within the VPC."
+      },
+      "correct_answer": "C",
+      "explanation": "In AWS VPC, you can delete a route table if it's not associated with any subnets. Option A is incorrect as each subnet does not have to be associated with a default route table, option B is incorrect because routes in a Route Table do not limit them to only EC2 instances within the same subnet, and option D is false as routes are not automatically propagated to all other route tables."
+    }
+  ],
+  "fillup": [
+    {
+      "id": 1,
+      "topic": "Data Transmission",
+      "difficulty": "hard",
+      "type": "fillup",
+      "question": "The ___ in a wireless network refers to the electromagnetic waves used for sending data.",
+      "correct_word": "frequency",
+      "hint": "Involves signal characteristics",
+      "explanation": "Frequency determines how often an oscillator changes state, which is essential for wireless communication."
+    },
+    {
+      "id": 1,
+      "topic": "Data Transmission",
+      "difficulty": "hard",
+      "type": "fillup",
+      "question": "In a digital circuit, ___ is used to represent binary digits.",
+      "correct_word": "Current",
+      "hint": "What does the other name of an electric signal represent?",
+      "explanation": "A current can be either ON (high voltage) or OFF (low voltage). These states correspond to binary values 1 and 0, respectively."
+    }
+  ],
+  "coding": []
+}

@@ -1,0 +1,57 @@
+{
+  "mcq": [
+    {
+      "id": 1,
+      "topic": "AWS VPC",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "When configuring a VPC route table, which of the following is true regarding the placement of routes that point to an internet gateway and a NAT gateway within the same subnet?\nA) You must place both routes in separate subnets.\nB) You can place them in any subnet as long as they are not directly connected to each other.\nC) They must be placed in different subnets to prevent route conflicts.\nD) It is possible to place both routes in the same subnet if no direct connection exists between them.",
+      "options": {
+        "A": "You must place both routes in separate subnets.",
+        "B": "You can place them in any subnet as long as they are not directly connected to each other.",
+        "C": "They must be placed in different subnets to prevent route conflicts.",
+        "D": "It is possible to place both routes in the same subnet if no direct connection exists between them."
+      },
+      "correct_answer": "D",
+      "explanation": "In AWS VPC, when a route table contains both an internet gateway and a NAT gateway within the same subnet, it can lead to ambiguity about which traffic should be routed through which. Placing both routes in the same subnet would require careful management to avoid routing conflicts. Option D correctly addresses this by stating that they can coexist in the same subnet with proper configuration."
+    },
+    {
+      "id": 1,
+      "topic": "AWS VPC",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "When configuring an AWS Virtual Private Cloud (VPC), what is the consequence of not setting a default route to a NAT Gateway? Choose all that apply.",
+      "options": {
+        "A": "Subnets within the VPC cannot communicate with Internet endpoints without manually configuring routing for each subnet",
+        "B": "Subnets within the VPC can communicate directly with Internet endpoints using a Route Table configured to use the default route of 0.0.0.0/0 pointing to the NAT Gateway",
+        "C": "Instances in the VPC can access the internet via public IP addresses assigned from an Elastic IP pool",
+        "D": "Subnets within the VPC must use private IP addresses only and cannot communicate with external resources without a NAT Gateway instance"
+      },
+      "correct_answer": "A,D",
+      "explanation": "If no default route to a NAT Gateway is set, subnets within the VPC cannot automatically reach Internet endpoints. This means that instances in these subnets would need explicit routing rules or NAT Gateways configured for each subnet to communicate with external resources."
+    }
+  ],
+  "fillup": [
+    {
+      "id": 1,
+      "topic": "Data Transmission",
+      "difficulty": "hard",
+      "type": "fillup",
+      "question": "The power supply for a wireless network transmitter is known as its ___.",
+      "correct_word": "Backscatter",
+      "hint": "Consider the method of transmitting data without wires.",
+      "explanation": "Backscatter technology reflects radio waves off objects to transmit signals, making it suitable for low-power devices such as sensors in a wireless network."
+    },
+    {
+      "id": 1,
+      "topic": "Data Transmission",
+      "difficulty": "hard",
+      "type": "fillup",
+      "question": "In a data transmission system, the ___ is used to ensure that all transmitted signals are correctly received and not corrupted by noise.",
+      "correct_word": "carrier wave",
+      "hint": "How does it prevent signal degradation?",
+      "explanation": "Carrier waves carry the information through a medium without losing quality."
+    }
+  ],
+  "coding": []
+}
