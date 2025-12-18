@@ -1,0 +1,57 @@
+{
+  "mcq": [
+    {
+      "id": 1,
+      "topic": "AWS VPC",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "Which of the following scenarios would result in an error when attempting to create a route table with AWS VPC?",
+      "options": {
+        "A": "Creating a default route table for a public subnet.",
+        "B": "Associating a public route table with an internet gateway.",
+        "C": "Adding a static route within the same region using another VPC's CIDR block.",
+        "D": "Using a custom route to point to a private subnet in a different region."
+      },
+      "correct_answer": "A",
+      "explanation": "Creating a default route table for a public subnet would violate VPC best practices as it automatically directs all traffic from the internet gateway to the default route table, which should be used only for internal routing within the same subnet."
+    },
+    {
+      "id": 1,
+      "topic": "AWS VPC",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "In AWS, which option correctly identifies a valid CIDR notation for an IPv6 address in the range of 2001::/48 to 2002::/48?",
+      "options": {
+        "A": "2001:db8::/32",
+        "B": "2001:abcd::/64",
+        "C": "2001:abcde::/64",
+        "D": "2001:abcdeff::/56"
+      },
+      "correct_answer": "A",
+      "explanation": "CIDR notation for IPv6 addresses is specified in the form of a prefix length. The correct CIDR range for 2001::/48 to 2002::/48 is 2001:db8::/32."
+    }
+  ],
+  "fillup": [
+    {
+      "id": 1,
+      "topic": "Data Transmission",
+      "difficulty": "hard",
+      "type": "fillup",
+      "question": "The ___ in a data transmission protocol determines how the sender and receiver synchronize their clocks.",
+      "correct_word": "Synchronization Signal",
+      "hint": "Think of it as the timing signal between two devices.",
+      "explanation": "Synchronization signals ensure that both devices are in sync, allowing for accurate data exchange."
+    },
+    {
+      "id": 1,
+      "topic": "Data Transmission",
+      "difficulty": "hard",
+      "type": "fillup",
+      "question": "In the context of digital communication, ___ is a protocol used to transmit data over a network.",
+      "correct_word": "TCP/IP",
+      "hint": "It's widely used for internet communications.",
+      "explanation": "TCP/IP stands for Transmission Control Protocol/Internet Protocol and is essential for reliable data transmission."
+    }
+  ],
+  "coding": []
+}
