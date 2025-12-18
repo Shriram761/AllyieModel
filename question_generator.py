@@ -25,7 +25,7 @@ class QuestionGenerator:
     def __init__(self, ollama_url: str = "http://localhost:11434"):
         """Initialize the question generator"""
         self.ollama_url = ollama_url
-        self.model = "llama3:latest"
+        self.model = "mistral:7b-instruct"
         self.temperature = 0.3  # FIXED: Lowered from 0.7 for consistent JSON output
         self.test_connection()
 
@@ -45,22 +45,66 @@ class QuestionGenerator:
     def generate_mcq(self, topic: str, difficulty: str = "easy", count: int = 3) -> tuple:
         """Generate MCQ questions - FIXED"""
 
-        prompt = f"""Generate {count} multiple choice questions about {topic} at {difficulty} difficulty level.
-  DIFFICULTY DEFINITION (STRICT):
-        - Easy: definition, direct recall, single concept
-        - Medium: conceptual understanding, scenario-based
-        - Hard: requires reasoning, elimination, or identifying subtle differences
+        prompt = f"""You are an expert exam question designer.
 
-        RULES FOR {difficulty.upper()}:
-        - Easy → answer obvious without deep thinking
-        - Medium → short reasoning needed
-        - Hard → at least 2 options must be plausibly correct
-CRITICAL: Return ONLY a valid JSON array. No markdown, no code blocks, no explanations before or after.
+TASK:
+Generate exactly {count} MULTIPLE CHOICE QUESTIONS on the topic "{topic}" with difficulty "{difficulty}".
 
-Example format (copy this structure exactly):
-[{{"id":1,"topic":"{topic}","difficulty":"{difficulty}","type":"mcq","question":"What is Python?","options":{{"A":"A snake","B":"A programming language","C":"A tool","D":"A framework"}},"correct_answer":"B","explanation":"Python is a programming language"}}]
+CRITICAL OUTPUT RULES (NON-NEGOTIABLE):
+1. Output MUST be a valid JSON ARRAY only.
+2. Do NOT include markdown, comments, explanations outside JSON, or extra text.
+3. The JSON must be parsable using json.loads() without modification.
+4. Follow the JSON schema EXACTLY as shown below. Do NOT add or remove fields.
+5. Every question MUST strictly match the requested difficulty.
 
-Now generate {count} questions following this EXACT JSON structure:"""
+DIFFICULTY CALIBRATION (VERY STRICT):
+- EASY:
+  - Direct fact or definition
+  - Single concept
+  - One option is clearly correct
+  - No tricks, no close options
+
+- MEDIUM:
+  - Conceptual understanding required
+  - Small scenario or application-based
+  - 1 correct option, 1 distractor that seems plausible
+  - Requires short reasoning
+
+- HARD:
+  - Requires deep reasoning or elimination
+  - At least TWO options must look correct at first glance
+  - Focus on edge cases, subtle differences, or hidden constraints
+  - NOT factual recall
+
+QUALITY RULES:
+- Questions must be technically accurate
+- Options must be non-trivial and well differentiated
+- Do NOT repeat the same question pattern
+- Avoid vague or subjective wording
+
+JSON SCHEMA (COPY EXACTLY):
+[
+  {{
+    "id": 1,
+    "topic": "{topic}",
+    "difficulty": "{difficulty}",
+    "type": "mcq",
+    "question": "Clear and precise question text",
+    "options": {{
+      "A": "Option A",
+      "B": "Option B",
+      "C": "Option C",
+      "D": "Option D"
+    }},
+    "correct_answer": "A",
+    "explanation": "Short technical explanation justifying why this option is correct"
+  }}
+]
+
+FINAL REMINDER:
+Return ONLY the JSON array.
+Generate exactly {count} questions.
+"""
 
         print(f"\n🔄 Generating {count} MCQ questions...")
         print(f"   Topic: {topic}, Difficulty: {difficulty}")
@@ -76,18 +120,58 @@ Now generate {count} questions following this EXACT JSON structure:"""
     def generate_fillup(self, topic: str, difficulty: str = "easy", count: int = 3) -> tuple:
         """Generate fill-in-the-blank questions - FIXED"""
 
-        prompt = f"""Generate {count} fill-in-the-blank questions about {topic} at {difficulty} difficulty level.
+        prompt = f"""You are an expert academic question designer.
 
-CRITICAL: Return ONLY a valid JSON array. No markdown, no code blocks, no explanations before or after.
-DIFFICULTY DEFINITION:
-- Easy: common keyword
-- Medium: less obvious term, context needed
-- Hard: precise technical term, easily confused with others
+TASK:
+Generate exactly {count} FILL-IN-THE-BLANK questions on the topic "{topic}" with difficulty "{difficulty}".
 
-Example format (copy this structure exactly):
-[{{"id":1,"topic":"{topic}","difficulty":"{difficulty}","type":"fillup","question":"Python uses ___ for comments","correct_word":"#","hint":"Symbol before comment line","explanation":"Hash marks comment in Python"}}]
+CRITICAL OUTPUT RULES (NON-NEGOTIABLE):
+1. Output MUST be a valid JSON ARRAY only.
+2. No markdown, no comments, no extra explanations outside JSON.
+3. JSON must be directly parsable using json.loads().
+4. Follow the schema EXACTLY as shown below.
+5. Difficulty matching is mandatory.
 
-Now generate {count} questions following this EXACT JSON structure:"""
+DIFFICULTY CALIBRATION (VERY STRICT):
+- EASY:
+  - Direct recall
+  - Obvious missing term
+  - Single correct word
+
+- MEDIUM:
+  - Requires understanding of concept or usage
+  - The blank should not be guessable without knowing the topic
+  - Still one clear correct answer
+
+- HARD:
+  - Requires reasoning or understanding of behavior, rules, or edge cases
+  - Blank should NOT be obvious from the sentence alone
+  - Avoid simple memorization
+
+QUALITY RULES:
+- Use exactly ONE blank represented by three underscores ___
+- Correct word must be precise (no multiple valid answers)
+- Sentence must be technically accurate
+- Avoid trivial or overly generic blanks
+
+JSON SCHEMA (COPY EXACTLY):
+[
+  {{
+    "id": 1,
+    "topic": "{topic}",
+    "difficulty": "{difficulty}",
+    "type": "fillup",
+    "question": "Sentence with ___ as the blank",
+    "correct_word": "ExactCorrectAnswer",
+    "hint": "Short helpful hint without giving away the answer",
+    "explanation": "Brief technical explanation of why this word fits"
+  }}
+]
+
+FINAL REMINDER:
+Return ONLY the JSON array.
+Generate exactly {count} questions.
+"""
 
         print(f"\n🔄 Generating {count} Fill-up questions...")
         print(f"   Topic: {topic}, Difficulty: {difficulty}")
@@ -177,7 +261,7 @@ Now generate {count} questions following this EXACT JSON structure:"""
                     "top_p": 0.9,  # Added for more consistent outputs
                     "top_k": 40,  # Added for better quality
                 },
-                timeout=120
+                # timeout=120
             )
 
             if response.status_code != 200:

@@ -70,7 +70,7 @@ class QuestionBenchmark:
 
         return {}
 
-    def benchmark_fillup(self, topic: str = "Data Transmission", difficulty: str = "Medium",
+    def benchmark_fillup(self, topic: str = "Data Transmission", difficulty: str = "hard",
                          iterations: int = 3, count: int = 3) -> Dict:
         """Benchmark Fill-up generation"""
 
@@ -297,7 +297,7 @@ if __name__ == "__main__":
     print("\n🔍 INDIVIDUAL BENCHMARKS\n")
     benchmark.benchmark_mcq(iterations=2, count=3)
     benchmark.benchmark_fillup(iterations=2, count=3)
-    benchmark.benchmark_coding(iterations=2, count=2)
+    # benchmark.benchmark_coding(iterations=2, count=2)
 
     # Option 2: Save all results
     benchmark.save_results("generated_questions.json")
